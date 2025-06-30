@@ -1,13 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { Calendar, Clock, FileText, TrendingUp } from 'lucide-react';
+import { Calendar, Clock, FileText, TrendingUp, Play } from 'lucide-react';
 import { Exam, StudentExam } from '@/types';
 
 export const StudentDashboard: React.FC = () => {
+  const navigate = useNavigate();
   const [upcomingExams, setUpcomingExams] = useState<Exam[]>([]);
   const [recentExams, setRecentExams] = useState<StudentExam[]>([]);
   const [stats, setStats] = useState({
@@ -105,6 +106,10 @@ export const StudentDashboard: React.FC = () => {
     });
   };
 
+  const handleStartExam = (examId: string) => {
+    navigate(`/exam/${examId}`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -170,7 +175,8 @@ export const StudentDashboard: React.FC = () => {
                     {formatDate(exam.startTime)} • {exam.duration} minutes
                   </p>
                 </div>
-                <Button size="sm">
+                <Button size="sm" onClick={() => handleStartExam(exam.id)}>
+                  <Play className="mr-2 h-4 w-4" />
                   Start Exam
                 </Button>
               </div>

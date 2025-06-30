@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +7,7 @@ import { Plus, Users, FileText, AlertTriangle, TrendingUp } from 'lucide-react';
 import { Exam, ProctoringEvent } from '@/types';
 
 export const ProfessorDashboard: React.FC = () => {
+  const navigate = useNavigate();
   const [exams, setExams] = useState<Exam[]>([]);
   const [proctoringAlerts, setProctoringAlerts] = useState<ProctoringEvent[]>([]);
   const [stats, setStats] = useState({
@@ -104,7 +105,7 @@ export const ProfessorDashboard: React.FC = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold tracking-tight">Professor Dashboard</h2>
-        <Button>
+        <Button onClick={() => navigate('/create-exam')}>
           <Plus className="mr-2 h-4 w-4" />
           Create Exam
         </Button>
@@ -223,11 +224,19 @@ export const ProfessorDashboard: React.FC = () => {
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-3">
-            <Button variant="outline" className="h-20 flex flex-col space-y-2">
+            <Button 
+              variant="outline" 
+              className="h-20 flex flex-col space-y-2"
+              onClick={() => navigate('/create-exam')}
+            >
               <Plus className="h-6 w-6" />
               <span>Create New Exam</span>
             </Button>
-            <Button variant="outline" className="h-20 flex flex-col space-y-2">
+            <Button 
+              variant="outline" 
+              className="h-20 flex flex-col space-y-2"
+              onClick={() => navigate('/manage-students')}
+            >
               <Users className="h-6 w-6" />
               <span>Manage Students</span>
             </Button>
