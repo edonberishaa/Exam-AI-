@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
 import { Clock, Camera, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Exam, Question } from '@/types';
 import { useToast } from '@/hooks/use-toast';
